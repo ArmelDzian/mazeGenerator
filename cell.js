@@ -13,12 +13,12 @@ class Cell{
     }
 
     // hightlight a cell with a different color
-    highlight(){
+    highlight(color){
         let canvas = document.getElementById("myCanvas");
         let ctx = canvas.getContext("2d");
         let xCord = this.x*this.size;
         let yCord = this.y*this.size;
-        ctx.fillStyle = "#dcf271";
+        ctx.fillStyle = color;
         ctx.fillRect(xCord,yCord,this.size,this.size);
     }
 

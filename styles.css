@@ -1,0 +1,40 @@
+#header {
+    margin-top: 20px
+}
+h1 {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 35px;
+}
+h2{
+    float: left;
+}
+#footer{
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#footer p {
+    margin: 30px
+}
+#social a {
+    float: right;
+    margin: 0;
+    margin-left: 10px
+}
+#social p{
+    float: left;
+    margin: 0;
+    margin-right: 10px
+}
+#myCanvas {
+    background-color:rgb(255, 255, 255);
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -43,12 +43,16 @@ function removeWalls(current,choosen){
 function init(){
     let canvas = document.getElementById("myCanvas"); //reference to html canvas
     let ctx = canvas.getContext("2d"); //reference to html canvas context, used for the visualisation
-    let cellSize = 30; //default cell size, determinates the number and size of cells in the matrix (TWEAK)
+    let cellSize = 20; //default cell size, determinates the number and size of cells in the matrix (TWEAK)
     let cols = Math.floor(canvas.width/cellSize); //determinates the number of columns
     let rows = Math.floor(canvas.height/cellSize); //determinates the number of rows
     let table = makeTable(cols,rows,cellSize); // the matrix
     let currentCell = table[0][0];
     let stack = []; // stack is used to store the visited cells in order to ba able to come back in the backtrack phase
+    let destination = {
+        cell: currentCell,
+        distance: stack.length
+    }
 
     /* DEBUGING 
     console.log(canvas.width);
@@ -62,7 +66,15 @@ function init(){
         ctx.clearRect(0, 0, canvas.width, canvas.height); // clear canvas
 
         currentCell.visited = true;
-        
+
+        // set destination to the furtherest cell from the beginning 
+        if(stack.length > destination.distance){
+            destination.cell = currentCell;
+            destination.distance = stack.length;
+        }
+
+        console.log(destination.distance);
+
         // display all cells in the matrix
         for (let i = 0; i<table.length;i++){
             for (let j = 0; j<table[i].length;j++){
@@ -70,8 +82,10 @@ function init(){
             }
         }
 
-        // highlight with a different color the current cell
-        currentCell.highlight();
+        // highlight with a different color the current cell and the furthest one
+        destination.cell.highlight("#ff3333"); //red
+        currentCell.highlight("#dcf271"); //light-yellow
+        
 
         if(currentCell.checkNeighbours(table).length != 0){
             // if there are neighbours to the current cell that havent been visited
@@ -90,6 +104,6 @@ function init(){
             currentCell = stack.pop();
         }
     }
-    // repate the loop() funtion every 200 ms (TWEAK)
-    setInterval(loop,150);
+    // repate the loop() funtion every 50 ms (TWEAK)
+    setInterval(loop,50);
 }
